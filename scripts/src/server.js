@@ -8,7 +8,7 @@ const path = require('path');
 require('dotenv').config({ path: path.join(__dirname, '../notpasvord.env') });
 
 const app = express();
-const port = process.env.PORT || 3000;
+const port = process.env.PORT || 4000; // Порт изменен на 4000 в ходе разрешения конфликта в Задании 3
 
 // Настройка пула подключений к вашей СУБД на основе карточки "cthdth" (root@127.0.0.1:3306)
 const pool = mysql.createPool({
@@ -107,6 +107,21 @@ app.get('/api/stats', async (req, res) => {
   } catch (error) {
     res.status(500).json({ success: false, error: error.message });
   }
+});
+
+/**
+ * 🏥 МАРШРУТ 5: Проверка работоспособности (Добавлен в Практике 5, обновлен в Практике 6)
+ * Возвращает статус сервера и динамическое время его непрерывной работы
+ */
+app.get('/health', (req, res) => {
+  res.json({ status: 'ok', uptime: process.uptime() });
+});
+
+/**
+ * ℹ️ МАРШРУТ 6: Информация об API (Добавлен в Практике 6 в ходе параллельного ветвления)
+ */
+app.get('/about', (req, res) => {
+  res.send('About Cafe API');
 });
 
 // Запуск прослушивания веб-сервера
