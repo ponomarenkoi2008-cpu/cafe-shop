@@ -8,7 +8,8 @@ const path = require('path');
 require('dotenv').config({ path: path.join(__dirname, '../notpasvord.env') });
 
 const app = express();
-const port = process.env.PORT || 4000; // Порт изменен на 4000 в ходе разрешения конфликта в Задании 3
+const port = process.env.APP_PORT || 5000;
+
 
 // Настройка пула подключений к вашей СУБД на основе карточки "cthdth" (root@127.0.0.1:3306)
 const pool = mysql.createPool({
