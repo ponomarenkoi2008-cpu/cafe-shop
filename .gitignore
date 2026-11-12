@@ -14,3 +14,5 @@ notpasvord.env
 # Build and logs
 dist/
 *.log
+notpasvord.env
+node_modules/
