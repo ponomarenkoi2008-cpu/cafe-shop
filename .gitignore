@@ -16,3 +16,4 @@ dist/
 *.log
 notpasvord.env
 node_modules/
+notpasvord.env
