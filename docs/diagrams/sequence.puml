@@ -1,0 +1,16 @@
+@startuml
+actor "Клиент / Касса" as Client
+participant "Express API" as API
+database "MySQL (cafe_db)" as DB
+
+Client -> API : POST /api/orders (order_type)
+API -> DB : CALL sp_create_order(order_type, @new_id)
+
+alt тип заказа валиден ("В зале" или "На вынос")
+  DB --> API : @new_id (ID нового заказа)
+  API --> Client : 201 Created (JSON с order_id)
+else неверный тип заказа (например, "Доставка")
+  DB --> API : Ошибка SIGNAL из процедуры
+  API --> Client : 400 Bad Request (описание ошибки)
+end
+@enduml
