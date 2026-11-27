@@ -1,0 +1,31 @@
+@startuml
+class Category {
+  +id: int
+  +name: string
+  +description: string
+}
+
+class MenuItem {
+  +id: int
+  +title: string
+  +price: decimal
+  +isAvailable: boolean
+}
+
+class Order {
+  +id: int
+  +orderType: string
+  +createdAt: datetime
+  +totalSum: decimal
+}
+
+class OrderItem {
+  +id: int
+  +quantity: int
+  +unitPrice: decimal
+}
+
+Category "1" *-- "0..*" MenuItem : включает
+Order "1" *-- "1..*" OrderItem : содержит
+MenuItem "1" --> "0..*" OrderItem : входит в
+@enduml
