@@ -1,0 +1,26 @@
+@startuml
+left to right direction
+
+actor "Клиент / Кассир" as Cashier
+actor "Менеджер" as Manager
+actor "Поставщик" as Supplier
+
+rectangle "Система автоматизации кофейни" {
+  usecase "Просмотреть меню" as UC1
+  usecase "Оформить заказ" as UC2
+  usecase "Выбрать тип обслуживания" as UC3
+  usecase "Посмотреть статистику продаж" as UC4
+  usecase "Проверить статус системы" as UC5
+  usecase "Сверить поставки склада" as UC6
+}
+
+Cashier --> UC1
+Cashier --> UC2
+Manager --> UC4
+Manager --> UC5
+Manager --> UC6
+Supplier --> UC6
+
+Manager --|> Cashier
+UC2 .> UC3 : include
+@enduml
