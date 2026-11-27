@@ -126,6 +126,13 @@ app.get('/about', (req, res) => {
 });
 
 // Запуск прослушивания веб-сервера
+app.get('/version', (req, res) => {
+  res.json({
+    service: 'cafe-automation',
+    version: '0.1.0'
+  });
+});
+
 app.listen(port, () => {
   console.log(`☕ Сервер автоматизации кофейни успешно запущен.`);
   console.log(`📡 URL-адрес локального шлюза API: http://localhost:${port}`);
